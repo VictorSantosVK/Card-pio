@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
     <link rel="shortcut icon" type="imagex/png" href="img/logopage.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,14 @@
 </head>
 
 <body>
+    <div class="container-mensagens" id="container-mensagens">
+
+    </div>
+    <a class="botao-carrinho hidden " onclick="cardapio.metodos.abrirCarrinho(true)">
+        <div class="badge-total-carrinho">0</div>
+        <i class="fa fa-shopping-bag"></i>
+    </a>
+
     <section class="header">
         <div class="container">
             <nav class="navbar navbar-expand-lg pl-0 pr-0 col-one">
@@ -42,8 +51,11 @@
                         </li>
                     </ul>
 
-                    <a href="" class="btn btn-white btn-icon">
-                        Meu carrinho <span class="icon"><i class="fa fa-shopping-bag"></i></span>
+                    <a class="btn btn-white btn-icon" onclick="cardapio.metodos.abrirCarrinho(true)">
+                        Meu carrinho <span class="icon">
+                            <div class="container-total-carrinho badge-total-carrinho hidden"></div><i
+                                class="fa fa-shopping-bag"></i>
+                        </span>
                     </a>
                 </div>
             </nav>
@@ -63,7 +75,7 @@
                         </p>
 
                         <div>
-                            <a class="btn btn-yellow mt-4 mr-3" href="">
+                            <a class="btn btn-yellow mt-4 mr-3">
                                 Ver Cardápio
                             </a>
 
@@ -81,11 +93,11 @@
                         <i class="fab fa-instagram"></i>
                     </a>
 
-                    <a href="" class="btn btn-sm btn-white btn-social mt-4 mr-3">
+                    <a class="btn btn-sm btn-white btn-social mt-4 mr-3">
                         <i class="fab fa-facebook"></i>
                     </a>
 
-                    <a href="" class="btn btn-sm btn-white btn-social mt-4 mr-3">
+                    <a class="btn btn-sm btn-white btn-social mt-4 mr-3">
                         <i class="fab fa-whatsapp"></i>
                     </a>
 
@@ -201,7 +213,7 @@
                         <i class="fas fa-cocktail"></i> &nbsp Bebidas
                     </a>
 
-                    <a id="menu-sobremesa" class="btn btn-white btn-sm mr-3"
+                    <a id="menu-sobremesas" class="btn btn-white btn-sm mr-3"
                         onclick="cardapio.metodos.obterItensCardapio('sobremesas')">
 
                         <i class="fas fa-ice-cream"></i> &nbsp Sobremesas
@@ -244,7 +256,7 @@
                                     <br>
                                     Reserve sua data e horário de forma simples e rápida.
                                 </p>
-                                <a href="" class="btn btn-yellow mt-4">
+                                <a class="btn btn-yellow mt-4">
                                     fazer reserva
                                 </a>
                             </div>
@@ -371,9 +383,9 @@
                         </div>
 
                     </div>
-                    <a href="" class="btn-sm btn-white btn-social mr-3 active">1</a>
-                    <a href="" class="btn-sm btn-white btn-social mr-3">2</a>
-                    <a href="" class="btn-sm btn-white btn-social">3</a>
+                    <a class="btn-sm btn-white btn-social mr-3 active">1</a>
+                    <a class="btn-sm btn-white btn-social mr-3">2</a>
+                    <a class="btn-sm btn-white btn-social">3</a>
                 </div>
             </div>
         </div>
@@ -389,7 +401,7 @@
                 </div>
                 <div class="col-6 container-texto-footer">
                     <p class="mb-0">
-                        <b>VKfood</b> &copy; Todos os direitos reservados
+                        <b>Victor Santos</b> &copy; Todos os direitos reservados
                     </p>
                 </div>
                 <div class="col-3 container-redes-footer">
@@ -397,11 +409,11 @@
                         <i class="fab fa-instagram"></i>
                     </a>
 
-                    <a href="" class="btn btn-sm btn-white btn-social mr-3">
+                    <a class="btn btn-sm btn-white btn-social mr-3">
                         <i class="fab fa-facebook"></i>
                     </a>
 
-                    <a href="" class="btn btn-sm btn-white btn-social ">
+                    <a class="btn btn-sm btn-white btn-social ">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
@@ -410,12 +422,12 @@
     </footer>
 
 
-    <div class="modal-full hidden" id="modalCarrinho">
+    <div class="modal-full hidden " id="modalCarrinho">
 
         <div class="m-header">
 
             <div class="container">
-                <a class="BTN btn-white btn-sm float-right">
+                <a class="BTN btn-white btn-sm float-right" onclick="cardapio.metodos.abrirCarrinho(false)">
                     Fechar
                 </a>
                 <div class="etapas">
@@ -540,7 +552,7 @@
 
                 </div>
 
-                <div id="resumoCarrinho" class="row mr-0 ml-0 ">
+                <div id="resumoCarrinho" class="row mr-0 ml-0  hidden">
                     <div class="col-12">
                         <p class="title-carrinho mt-4">
                             <b>Itens do pedido:</b>
@@ -616,10 +628,10 @@
                 </p>
             </div>
 
-            <a class="btn btn-yellow float-right" id="btnEtapaPedido">Continuar</a>
-            <a class="btn btn-yellow float-right hidden" id="btnEtapaEndereco ">Revisar Pedido</a>
-            <a class="btn btn-yellow float-right hidden" id="btnEtapaResumo">Enviar pedidp</a>
-            <a class="btn btn-white float-right mr-3 hidden" id="btnEtapaVoltar">Voltar</a>
+            <a onclick="cardapio.metodos.carregarEtapa(2)" class="btn btn-yellow float-right" id="btnEtapaPedido">Continuar</a>
+            <a onclick="cardapio.metodos.carregarEtapa(3)" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco">Revisar Pedido</a>
+            <a class="btn btn-yellow float-right hidden" id="btnEtapaResumo">Enviar pedido</a>
+            <a onclick="cardapio.metodos.voltarEtapa()" class="btn btn-white float-right mr-3 hidden" id="btnVoltar">Voltar</a>
         </div>
     </div>
 
